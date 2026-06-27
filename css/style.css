@@ -7,148 +7,200 @@
 body{
 
     font-family:'Segoe UI',sans-serif;
-
-    background:#fff6fb;
-
+    background:linear-gradient(
+        135deg,
+        #f8f8f8,
+        #f6f2f4,
+        #ffffff
+    );
     overflow:hidden;
+    color:#555;
+
 }
 
 #container{
 
     width:100vw;
     height:100vh;
-
     display:flex;
+
+}
+
+#leftPanel,
+#rightPanel{
+
+    width:270px;
+
+    background:rgba(255,255,255,.72);
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+    padding:18px;
+
+    overflow-y:auto;
+
 }
 
 #leftPanel{
 
-    width:260px;
+    border-right:1px solid #d9d9d9;
 
-    background:#ffe6f2;
+}
 
-    border-right:3px solid #ffc4df;
+#rightPanel{
 
-    padding:15px;
+    border-left:1px solid #d9d9d9;
 
-    overflow-y:auto;
 }
 
 #viewport{
 
     flex:1;
-
+    background:white;
     position:relative;
 
-    background:#fffdfd;
 }
 
 #webgl{
 
     width:100%;
     height:100%;
-
     display:block;
-}
 
-#rightPanel{
-
-    width:260px;
-
-    border-left:3px solid #ffc4df;
-
-    padding:15px;
-
-    overflow-y:auto;
 }
 
 h2{
 
     text-align:center;
+    color:#b31263;
+    margin-bottom:18px;
+    font-size:24px;
 
-    color:#d65f9e;
-
-    margin-bottom:15px;
 }
 
 h3{
 
-    color:#c04a88;
+    color:#8f0f4f;
+    margin-bottom:10px;
+    font-size:18px;
 
-    margin-bottom:8px;
 }
 
 .section{
 
-    background:white;
+    background:rgba(255,255,255,.82);
 
-    padding:12px;
+    backdrop-filter:blur(8px);
 
-    border-radius:12px;
+    border-radius:14px;
 
-    margin-bottom:15px;
+    padding:14px;
 
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom:18px;
+
+    border:1px solid rgba(255,255,255,.45);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.06);
+
 }
 
 label{
 
     display:block;
+    margin-top:8px;
+    margin-bottom:5px;
+    font-size:14px;
 
-    margin-top:5px;
 }
 
-input{
+input,
+select{
 
     width:100%;
-
-    margin-top:4px;
-
-    margin-bottom:8px;
-
-    padding:6px;
-
+    padding:8px;
     border-radius:8px;
+    border:1px solid #d7d7d7;
+    background:white;
+    margin-bottom:10px;
+    transition:.2s;
 
-    border:1px solid #ffc4df;
+}
+
+input:focus,
+select:focus{
+
+    outline:none;
+    border-color:#b31263;
+    box-shadow:
+    0 0 0 3px rgba(216,27,119,.18);
+
 }
 
 button{
 
     width:100%;
 
-    padding:10px;
+    padding:11px;
 
     border:none;
 
     border-radius:12px;
 
-    background:#c90b6d;
+    background:linear-gradient(
+        180deg,
+        #d81b77,
+        #b31263
+    );
 
     color:white;
 
-    font-weight:bold;
+    font-weight:600;
 
     cursor:pointer;
 
-    transition:0.2s;
-    
-  margin-bottom: 10px;
-}
+    transition:.25s;
 
+    margin-bottom:10px;
+
+    box-shadow:
+    0 4px 10px rgba(179,18,99,.25);
+
+}
 
 button:hover{
 
-    background:#850c48;
+     background:linear-gradient(
+        180deg,
+        #eb2d8c,
+        #980f53
+    );
+
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 8px 18px rgba(179,18,99,.35);
+
+}
+
+button:active{
+
+    transform:translateY(1px);
+
 }
 
 #modelList{
 
     display:flex;
-
     flex-direction:column;
+    gap:12px;
 
-    gap:10px;
 }
 
 .modelButton{
@@ -175,14 +227,66 @@ button:hover{
 }
 
 .modelButton img{
-    width:60px;
-    height:60px;
+
+    width:65px;
+    height:65px;
     object-fit:contain;
+    margin-left:10px;
+
+}
+
+.modelButton span{
+
+    font-weight:600;
+
 }
 
 .modelButton:hover{
 
-    transform:scale(1.03);
+    background:#fff4f9;
+    border-color:#b31263;
+    transform:translateX(4px);
 
-    background:#fff0f7;
+}
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#b31263;
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#8f0f4f;
+
+}
+
+hr{
+
+    border:none;
+
+    height:1px;
+
+    margin:18px 0;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        #d8a4c0,
+        transparent
+    );
+
 }

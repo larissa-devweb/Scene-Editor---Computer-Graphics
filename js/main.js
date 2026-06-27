@@ -679,7 +679,7 @@ deleteButton.addEventListener(
             return;
 
         // Remove da cena
-        scene.remove(obj);
+       //scene.remove(obj);
         obj.removeFromParent(); 
 
         // Remove da lista de objetos
@@ -723,6 +723,9 @@ document.getElementById("parentSelect");
 
 const applyParent =
 document.getElementById("applyParent");
+
+const removeParent =
+document.getElementById("removeParent");
 
 function updateParentList(){
 
@@ -781,6 +784,21 @@ applyParent.addEventListener(
     }
 );
 
+removeParent.addEventListener("click", ()=>{
+
+    const obj = getSelectedObject();
+
+    if(!obj) return;
+
+    // se já está na cena, não possui pai
+    if(obj.parent === scene)
+        return;
+
+    scene.attach(obj);
+
+    updateParentList();
+
+});
 
 //TEXTURAS 
 
@@ -1002,18 +1020,8 @@ raycaster.intersectObjects(
     return false;
 });
         if(intersects.length > 0){
-/*
- let obj =intersects[0].object;
 
-            while(
-                obj.parent &&
-          //obj.parent.type !== "Scene"
-           !obj.userData.selectable
-            ){
 
-                obj = obj.parent;
-
-            }*/
     let obj = intersects[0].object;
 
 while(

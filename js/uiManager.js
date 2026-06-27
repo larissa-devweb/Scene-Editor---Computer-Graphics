@@ -5,9 +5,6 @@ import {
 }
 from "./sceneManager.js";
 
-/* =========================
-   CAMPOS HTML
-========================= */
 
 const posX =
 document.getElementById("posX");
