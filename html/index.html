@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editor de Cena 3D</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.167.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.167.1/examples/jsm/"
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+
+<div id="container">
+
+    <!-- MENU ESQUERDO -->
+
+    <div id="leftPanel">
+
+        <h2>Menu</h2>
+
+        <div class="section">
+
+            <h3>Objeto Selecionado</h3>
+
+            <input
+                id="selectedName"
+                readonly
+            >
+
+        </div>
+
+        <div class="section">
+
+             <h2>Transformações</h2>
+
+             <h3>Translação</h3>
+
+
+          <!--  <label>X</label>
+            <input type="number" id="posX">
+
+            <label>Y</label>
+            <input type="number" id="posY">
+
+            <label>Z</label>
+            <input type="number" id="posZ">-->
+
+            X
+<input type="range"
+       id="posX"
+       min="-10"
+       max="10"
+       step="0.1">
+
+Y
+<input type="range"
+       id="posY"
+       min="-10"
+       max="10"
+       step="0.1">
+
+Z
+<input type="range"
+       id="posZ"
+       min="-10"
+       max="10"
+       step="0.1">
+
+        </div>
+
+        <div class="section">
+
+            <h3>Rotação</h3>
+
+            <label>X</label>
+            <input type="number" id="rotX">
+
+            <label>Y</label>
+            <input type="number" id="rotY">
+
+            <label>Z</label>
+            <input type="number" id="rotZ">
+
+        </div>
+
+        <div class="section">
+
+            <h3>Escala</h3>
+
+            <label>X</label>
+            <input type="number" id="scaleX">
+
+            <label>Y</label>
+            <input type="number" id="scaleY">
+
+            <label>Z</label>
+            <input type="number" id="scaleZ">
+
+        </div>
+
+<!--botao para aplicar as transformações-->
+        <button id="applyTransform">
+            Aplicar Transformações
+        </button>
+
+
+        <!--animaçoes-->
+
+<div class="section">
+
+    <h3>Animação</h3>
+
+    <label>Velocidade X</label>
+    <input type="range"
+           id="speedX"
+           min="-0.1"
+           max="0.1"
+           step="0.001"
+           value="0">
+
+    <label>Velocidade Y</label>
+    <input type="range"
+           id="speedY"
+           min="-0.1"
+           max="0.1"
+           step="0.001"
+           value="0">
+
+    <label>Velocidade Z</label>
+    <input type="range"
+           id="speedZ"
+           min="-0.1"
+           max="0.1"
+           step="0.001"
+           value="0">
+
+</div>
+
+        <button id="applyAnimation">
+    Aplicar Animação
+</button>
+
+<button id="stopAnimation">
+    Parar Animação
+</button>
+
+<button id="deleteObject">
+    Deletar Modelo
+</button>
+
+<h3>Hierarquia</h3>
+
+<label>Pai</label>
+
+<select id="parentSelect">
+    <option value="">Nenhum</option>
+</select>
+
+<button id="applyParent">
+    Aplicar Hierarquia
+</button>
+
+        <br><br>
+
+        <button id="saveScene">
+            Salvar Cena
+        </button>
+
+        <br><br>
+
+
+<input
+    type="file"
+    id="loadScene"
+    accept=".json"
+>
+
+<div class="section">
+
+    <h3>Cor do Modelo</h3>
+
+    <input
+        type="color"
+        id="objectColor"
+        value="#ffffff"
+    >
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h3>Textura</h3>
+
+<select id="textureSelect">
+
+    <option value="original">Original</option>
+    <option value="chocolate">Chocolate</option>
+    <option value="morango">Morango</option>
+    <option value="glace">Glacê</option>
+
+</select>
+
+    <label>Rotação</label>
+    <input type="number"
+           id="texRotation"
+           value="0">
+
+    <label>Roughness</label>
+    <input type="range"
+           id="roughness"
+           min="0"
+           max="1"
+           step="0.01"
+           value="0.5">
+
+    <label>Metalness</label>
+    <input type="range"
+           id="metalness"
+           min="0"
+           max="1"
+           step="0.01"
+           value="0">
+
+       <label>Opacidade</label>
+           <input
+    type="range"
+    id="opacity"
+    min="0"
+    max="1"
+    step="0.01"
+    value="1">
+
+           <button id="applyTexture">
+    Aplicar Textura
+</button>
+
+
+</div>
+
+
+    <div id="viewport">
+
+        <canvas id="webgl"></canvas>
+
+    </div>
+
+    <!-- MODELOS -->
+
+    <div id="rightPanel">
+
+        <h2>Seleção de Modelos</h2>
+
+        <div id="modelList">
+
+<button class="modelButton" data-model="baguette">
+    <img src="../Assets/previews/baguette.png"
+        width="100">
+    <span>Baguette</span>
+</button>
+
+    <button class="modelButton" data-model="baguette_half">
+        <img src="../Assets/previews/baguette_half.png"
+        width="100">
+    <span>Baguette half</span>
+    </button>
+
+    <button class="modelButton" data-model="baguette_slice">
+        <img src="../Assets/previews/baguette_slice.png"
+        width="100">
+    <span>Baguette slice</span>
+    </button>
+
+    <button class="modelButton" data-model="bread">
+        <img src="../Assets/previews/bread.png"
+        width="100">
+    <span>Bread</span>
+    </button>
+
+    <button class="modelButton" data-model="bread_half">
+        <img src="../Assets/previews/bread_half.png"
+        width="100">
+    <span>Bread half</span>
+    </button>
+
+    <button class="modelButton" data-model="bread_roll">
+        <img src="../Assets/previews/bread_roll.png"
+        width="80">
+    <span>Bread roll</span>
+    </button>
+
+    <button class="modelButton" data-model="bread_slice">
+        <img src="../Assets/previews/bread_slice.png"
+        width="80">
+    <span>Bread slice</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_birthday">
+<img src="../Assets/previews/cake_birthday.png"
+        width="100">
+    <span>cake birthday</span>    </button>
+
+    <button class="modelButton" data-model="cake_birthday_cut">
+        <img src="../Assets/previews/cake_birthday_cut.png"
+        width="100">
+    <span>cake birthday cut</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_birthday_slice">
+        <img src="../Assets/previews/cake_birthday_slice.png"
+        width="100">
+    <span>cake birthday slice</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_birthday_candle_fire">
+        <img src="../Assets/previews/cake_birthday_candle_fire.png"
+        width="100">
+    <span>cake birthday candle fire</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_birthday_cut_candle_fire">
+        <img src="../Assets/previews/cake_birthday_cut_candle_fire.png"
+        width="100">
+    <span>cake birthday cut candle fire</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_birthday_slice_candle_fire">
+        <img src="../Assets/previews/cake_birthday_slice_candle_fire.png"
+        width="100">
+    <span>cake birthday slice candle fire</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_chocolate">
+        <img src="../Assets/previews/cake_chocolate.png"
+        width="100">
+    <span>cake chocolate</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_strawberry">
+        <img src="../Assets/previews/cake_strawberry.png"
+        width="100">
+    <span>cake strawberry</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_strawberry_cut">
+        <img src="../Assets/previews/cake_strawberry_cut.png"
+        width="100">
+    <span>cake strawberry cut</span>
+    </button>
+
+    <button class="modelButton" data-model="cake_strawberry_slice">
+        <img src="../Assets/previews/cake_strawberry_slice.png"
+        width="100">
+    <span>cake strawberry slice</span>
+    </button>
+
+    <button class="modelButton" data-model="cinnamon_roll">
+        <img src="../Assets/previews/cinnamon_roll.png"
+        width="100">
+    <span>Cinnamon Roll</span>
+    </button>
+
+    <button class="modelButton" data-model="cookie">
+        <img src="../Assets/previews/cookie.png"
+        width="100">
+    <span>Cookie</span>
+    </button>
+
+    <button class="modelButton" data-model="croissant">
+        <img src="../Assets/previews/croissant.png"
+        width="100">
+    <span>Croissant</span>
+    </button>
+
+    <button class="modelButton" data-model="cupcake">
+        <img src="../Assets/previews/cupcake.png"
+        width="100">
+    <span>Cupcake</span>
+    </button>
+
+    <button class="modelButton" data-model="donut">
+        <img src="../Assets/previews/donut.png"
+        width="100">
+    <span>Donut</span>
+    </button>
+
+    <button class="modelButton" data-model="donut_chocolate">
+        <img src="../Assets/previews/donut_chocolate.png"
+        width="100">
+    <span>Chocolate Donut</span>
+    </button>
+
+    <button class="modelButton" data-model="donut_pink">
+        <img src="../Assets/previews/donut_pink.png"
+        width="100">
+    <span>Pink Donut</span>
+    </button>
+
+    <button class="modelButton" data-model="muffin">
+        <img src="../Assets/previews/muffin.png"
+        width="100">
+    <span>Muffin</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_apple">
+        <img src="../Assets/previews/pie_apple.png"
+        width="100">
+    <span>Apple Pie</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_apple_cut">
+        <img src="../Assets/previews/pie_apple_cut.png"
+        width="100">
+    <span>Apple Pie Cut</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_apple_slice">
+        <img src="../Assets/previews/pie_apple_slice.png"
+        width="100">
+    <span>Apple Pie Slice</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_cherry">
+        <img src="../Assets/previews/pie_cherry.png"
+        width="100">
+    <span>Cherry Pie</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_cherry_cut">
+        <img src="../Assets/previews/pie_cherry_cut.png"
+        width="100">
+    <span>Cherry Pie Cut</span>
+    </button>
+
+    <button class="modelButton" data-model="pie_cherry_slice">
+        <img src="../Assets/previews/pie_cherry_slice.png"
+        width="100">
+    <span>Cherry Pie Slice</span>
+    </button>
+
+    <button class="modelButton" data-model="waffle">
+        <img src="../Assets/previews/waffle.png"
+        width="100">
+    <span>Waffle</span>
+    </button>
+
+    <button class="modelButton" data-model="waffle_stacked">
+        <img src="../Assets/previews/waffle_stacked.png"
+        width="100">
+    <span>Waffle Stacked</span>
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<script type="module" src="../js/main.js"></script>
+
+</body>
+</html>

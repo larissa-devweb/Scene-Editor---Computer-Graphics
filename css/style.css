@@ -1,0 +1,188 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:#fff6fb;
+
+    overflow:hidden;
+}
+
+#container{
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+}
+
+#leftPanel{
+
+    width:260px;
+
+    background:#ffe6f2;
+
+    border-right:3px solid #ffc4df;
+
+    padding:15px;
+
+    overflow-y:auto;
+}
+
+#viewport{
+
+    flex:1;
+
+    position:relative;
+
+    background:#fffdfd;
+}
+
+#webgl{
+
+    width:100%;
+    height:100%;
+
+    display:block;
+}
+
+#rightPanel{
+
+    width:260px;
+
+    border-left:3px solid #ffc4df;
+
+    padding:15px;
+
+    overflow-y:auto;
+}
+
+h2{
+
+    text-align:center;
+
+    color:#d65f9e;
+
+    margin-bottom:15px;
+}
+
+h3{
+
+    color:#c04a88;
+
+    margin-bottom:8px;
+}
+
+.section{
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+label{
+
+    display:block;
+
+    margin-top:5px;
+}
+
+input{
+
+    width:100%;
+
+    margin-top:4px;
+
+    margin-bottom:8px;
+
+    padding:6px;
+
+    border-radius:8px;
+
+    border:1px solid #ffc4df;
+}
+
+button{
+
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#c90b6d;
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+    
+  margin-bottom: 10px;
+}
+
+
+button:hover{
+
+    background:#850c48;
+}
+
+#modelList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.modelButton{
+
+    height:80px;
+
+    background:white;
+
+    border:2px solid #f7d7e6;
+
+    border-radius:15px;
+
+    color:#8b1655;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:180px;
+    overflow:hidden;
+}
+
+.modelButton img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.modelButton:hover{
+
+    transform:scale(1.03);
+
+    background:#fff0f7;
+}
