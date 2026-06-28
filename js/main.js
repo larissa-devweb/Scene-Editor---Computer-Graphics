@@ -193,7 +193,6 @@ const modelCache = {};
 
 //MODELOS
 
-//function addModel(name){
 export async function addModel(name){
 
     mtlLoader.setResourcePath(
@@ -296,6 +295,12 @@ obj.traverse((child)=>{
 
         child.material.needsUpdate = true;
 
+        // Guarda a textura original para poder reusar
+            if (!obj.userData.originalTexture) {
+                obj.userData.originalTexture = child.material.map;
+                obj.userData.originalMaterial = child.material.clone();
+            }
+
     }
 
 });
@@ -386,6 +391,8 @@ controls.update();
         }
     );
 }
+
+
 //BOTÕES
 
 document
@@ -471,9 +478,6 @@ if(colorPicker){
     );
 
 }
-
-
-
 
 // TRANSFORMAÇÕES
 
@@ -598,9 +602,6 @@ scaleZ.addEventListener("input", ()=>{
 
 });
 
-
-//acaba aqui as transformaçoes
-
 //ANIMAÇAO E VELOCIDADE
 
 const speedX =
@@ -643,13 +644,6 @@ document.getElementById(
     "stopAnimation"
 );
 
-//para deletar modelo
-
-const deleteButton =
-document.getElementById(
-    "deleteObject"
-);
-
 stopAnimation.addEventListener(
     "click",
     ()=>{
@@ -667,6 +661,14 @@ stopAnimation.addEventListener(
 
     }
 );
+
+//para deletar modelo
+
+const deleteButton =
+document.getElementById(
+    "deleteObject"
+);
+
 
 deleteButton.addEventListener(
     "click",
@@ -700,7 +702,7 @@ deleteButton.addEventListener(
 
         }
 
-        // Remove o gizmo
+        // Remove 
         transformControls.detach();
 
         // Limpa seleção
@@ -709,12 +711,10 @@ deleteButton.addEventListener(
         // Atualiza lista de pais
         updateParentList();
 
-        // Atualiza interface
         updateUI();
 
     }
 );
-
 
 //para hierarquia
 
@@ -765,6 +765,7 @@ applyParent.addEventListener(
     scene.attach(child);
 
             updateParentList();
+            updateUI();
 
             return;
         }
@@ -774,7 +775,7 @@ applyParent.addEventListener(
         if(!parent)
             return;
 
-        if(parent === child)
+        if(parent === child) 
             return;
 
       parent.attach(child);
@@ -790,8 +791,12 @@ removeParent.addEventListener("click", ()=>{
 
     if(!obj) return;
 
-    // se já está na cena, não possui pai
+console.log("Objeto selecionado:", obj);
+  //console.log("Pai atual:", obj.parent);
+  //console.log("É filho da cena?", obj.parent === scene);
+
     if(obj.parent === scene)
+      console.log("O objeto já está na cena.");
         return;
 
     scene.attach(obj);
@@ -809,12 +814,10 @@ document.getElementById(
 const roughnessInput = document.getElementById("roughness");
 
 const metalnessInput =document.getElementById("metalness");
-
-//const repeatX =document.getElementById("repeatX");
-//const repeatY =document.getElementById("repeatY");
-
+//repeat é duplicar textura, ao inves de esticar
+const repeatX =document.getElementById("repeatX");
+const repeatY =document.getElementById("repeatY");
 const texRotation =document.getElementById("texRotation");
-
 const opacity =document.getElementById("opacity");
 
 if(textureSelect){
@@ -919,9 +922,9 @@ mat.needsUpdate = true;
 
 });
 
-}); //traverse
+});
 
-}); //change
+}); 
 
 } //textureSelect
 
@@ -969,7 +972,6 @@ opacity.addEventListener("input", ()=>{
     });
 
 });
-
 
 // CLIQUE 
 

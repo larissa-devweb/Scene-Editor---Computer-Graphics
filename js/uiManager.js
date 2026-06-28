@@ -43,9 +43,17 @@ document.getElementById(
     "applyTransform"
 );
 
-/* =========================
-   ATUALIZA CAMPOS
-========================= */
+const removeParentButton =
+document.getElementById(
+    "removeParent"
+);
+
+const applyTextureButton =
+document.getElementById(
+    "applyTexture"
+);
+
+//ATUALIZAR
 
 export function updateUI(){
 
@@ -97,9 +105,7 @@ export function updateUI(){
 
 }
 
-/* =========================
-   APLICAR
-========================= */
+//APLICAR
 
 applyButton.addEventListener(
     "click",
@@ -153,6 +159,8 @@ applyButton.addEventListener(
             Number(scaleZ.value)
 
         );
+
+        
 
     }
 );
