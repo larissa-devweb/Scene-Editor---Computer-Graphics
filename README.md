@@ -313,8 +313,6 @@ permitindo desenvolver aplicações 3D de forma muito mais simples.
 
 # Possíveis Melhorias Futuras
 
-- Gizmos personalizados
-- Undo / Redo
 - Sistema de iluminação dinâmica
 - Sombras em tempo real
 - Importação de modelos GLTF
@@ -322,9 +320,12 @@ permitindo desenvolver aplicações 3D de forma muito mais simples.
 - Editor de animações
 - Duplicação de objetos
 - Agrupamento de objetos
-- Snap de movimentação
+- melhores resultados em textura
 - Sistema de camadas
 
+## Para compilar
+
+# - Usei VsCode : Live Server 
 
 # Licença
 
