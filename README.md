@@ -326,11 +326,7 @@ permitindo desenvolver aplicações 3D de forma muito mais simples.
 ## Para compilar
 
 # - Usei VsCode : Live Server 
-
-# Licença
-
-Projeto desenvolvido exclusivamente para fins acadêmicos.
-
+---
 
 <h2>Demonstração</h2>
 
@@ -339,3 +335,14 @@ Projeto desenvolvido exclusivamente para fins acadêmicos.
 </video>
 
 drive: https://drive.google.com/file/d/1EPM0EjKDf2kuSmp8Q0QpK7dctNICy9SU/view?usp=sharing
+----
+# Licença
+
+Projeto desenvolvido exclusivamente para fins acadêmicos.
+
+--- 
+# links usados: 
+
+- https://webgl2fundamentals.org/webgl/lessons/webgl-2d-translation.html
+- https://threejs.org/
+- https://apidog.com/pt/blog/three-js-tutorial/
