@@ -9,7 +9,7 @@ O projeto permite criar e editar cenas tridimensionais por meio de uma interface
 ### Tela Principal
 
 <p align="center">
-<img src="site.png" width="900">
+<img src="sitee.png" width="900">
 </p>
 
 # Tecnologias Utilizadas
