@@ -290,3 +290,8 @@ hr{
     );
 
 }
+
+.textureSection{
+    max-width: 200px;
+    margin: 0 auto 18px auto;
+}
