@@ -343,6 +343,5 @@ Projeto desenvolvido exclusivamente para fins acadêmicos.
 --- 
 # links usados: 
 
-- https://webgl2fundamentals.org/webgl/lessons/webgl-2d-translation.html
+- https://webgl2fundamentals.org/webgl/lessons
 - https://threejs.org/
-- https://apidog.com/pt/blog/three-js-tutorial/
