@@ -123,7 +123,6 @@ scene.add(
         50,
         50,
          0x666666,
-      //0xff99cc,
     0xffcce5
     )
 );
@@ -148,7 +147,7 @@ cube.position.set(
 
 scene.add(cube);*/
 
-//RESIZE
+//RESIZE - ajuste canvas
 function resize(){
 
     const viewport =
@@ -188,8 +187,6 @@ const mtlLoader =
 new MTLLoader();
 
 const modelCache = {};
-//const clone = modelCache[name].clone();
-
 
 //MODELOS
 
@@ -414,7 +411,6 @@ document
 });
 
 //COR OBJETO
-
 const colorPicker =
 document.getElementById(
     "objectColor"
@@ -702,13 +698,11 @@ deleteButton.addEventListener(
 
         }
 
-        // Remove 
         transformControls.detach();
 
         // Limpa seleção
         setSelectedObject(null);
 
-        // Atualiza lista de pais
         updateParentList();
 
         updateUI();
@@ -717,7 +711,6 @@ deleteButton.addEventListener(
 );
 
 //para hierarquia
-
 const parentSelect =
 document.getElementById("parentSelect");
 
@@ -791,9 +784,7 @@ removeParent.addEventListener("click", ()=>{
 
     if(!obj) return;
 
-console.log("Objeto selecionado:", obj);
-  //console.log("Pai atual:", obj.parent);
-  //console.log("É filho da cena?", obj.parent === scene);
+//console.log("Objeto selecionado:", obj);
 
     if(obj.parent === scene)
       console.log("O objeto já está na cena.");
