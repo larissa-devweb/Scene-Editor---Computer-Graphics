@@ -345,3 +345,4 @@ Projeto desenvolvido exclusivamente para fins acadêmicos.
 
 - https://webgl2fundamentals.org/webgl/lessons
 - https://threejs.org/
+- https://threejs.org/docs/#Raycaster
